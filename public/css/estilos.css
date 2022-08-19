@@ -1,0 +1,108 @@
+
+
+
+a:visited, a:active , a:link{
+	text-decoration: none;
+	background-color: rgb(233, 233, 203);
+	color: rgb(79, 79, 212);
+	font-size: 18px;
+	
+	}
+	
+	a:hover{
+	color: black;
+	background-color: white; 
+	}
+
+
+ .paginar	a:visited, a:active , a:link{
+		text-decoration: none;
+		background-color: rgb(138, 138, 111);
+		color: rgb(234, 234, 245);
+		font-size: 18px;
+		
+		}
+	
+
+     .paginar 	a:hover{
+		color: rgb(205, 141, 141);
+		background-color: white; 
+		}
+	
+
+
+	.paginar ul{
+
+		background-color: #cde4dc;
+		padding: 1px;
+	}
+
+	.paginar li{
+		
+		font-size: 22;
+		font-weight: bolder;
+		list-style-type: none;
+		display: inline;
+		padding: 2px;
+		color: white;
+		background-color: #043121;
+		}
+
+
+	.contenedor{
+
+		width: 90%;
+		margin: auto;
+		border: 3px  solid #043121;
+		background-color: rgb(238, 241, 210);
+		padding: 10px;
+	}
+	.login{
+
+		text-align: center;
+		font-size: 13;
+		padding: 3px;
+		width: 35%;
+		font-family: Georgia, 'Times New Roman', Times, serif;
+		background-color: rgb(204, 172, 132);
+		margin: 0 auto;
+
+	}
+	h1{ text-shadow: 3px 3px 5px blueviolet;
+		text-align: center;
+		background: linear-gradient(white, #f2f2f2);
+		}
+	
+		
+		
+		body{
+		background-color: #d2d3d4;
+		margin-left: 120px;
+		margin-right: 120px;
+		}
+
+
+		table {
+			font-family: Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		  }
+		
+		  td th{
+
+			border: 1px solid #ddd;
+			padding: 2px;
+			text-align: center;
+			font-size: 10px;
+
+		  }
+
+		  th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #04AA6D;
+			color: white;
+		  }
+
+		tr:nth-child(even){background-color: #f5dcdc;}

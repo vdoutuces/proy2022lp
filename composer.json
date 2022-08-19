@@ -1,0 +1,15 @@
+{
+    "name": "jvdeoli/etslp",
+    "description": "Proyecto 2022 - ETSLP",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+   "files": [
+      "app/helpers.php"
+    ]
+    
+    },
+
+    "require": {}
+}
