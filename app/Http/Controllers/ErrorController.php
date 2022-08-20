@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 use \App\Classes\Controlador;
+use \App\Http\Response;
 
 class ErrorController extends Controlador  
 {
@@ -18,7 +19,7 @@ class ErrorController extends Controlador
 
         $status .= '<h5><a href="/home">ir al inicio</a></h5>';
         
-        return [ $status ];
+        return (new Response("Error", [ $status ]));
     }
 
 

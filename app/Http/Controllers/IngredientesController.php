@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 use \App\Classes\Controlador;
+use \App\Http\Response;
 
 class IngredientesController extends Controlador{
 
     private  $dbIng;
+    private  $datos_bd = ["id" => "Id Ingredientes",
+    "nombre_producto" => "Nombre Producto",
+    "unidades_medida" => "Unidades",
+    "descripcion_producto" => "Descripción",
+    "marca_producto" => "Marca",
+    "fecha_ingreso" => "Fecha",
+    "cantidad"  => "Cantidad"];
 
     public function __construct()
     {
         $this->dbIng = \App\Http\Models\DB::getInstance();
+
     }
 
 
@@ -26,7 +35,7 @@ class IngredientesController extends Controlador{
 
     ];
 
-        return $retorno;
+        return (new response("Ingredientes",$retorno));
 
     }
 
@@ -55,17 +64,70 @@ class IngredientesController extends Controlador{
 
     ];
 
-        return $retorno;
+        return (new Response('Ingredientes',$retorno));
     }
 
-    public function insertar()
+
+    private function _cargarDatos()
     {
-        array_pop($_POST);
-        array_shift($_POST);
-        //       $this->dbIng->insert("ingredientes", $_POST);
-
-        return( $this->index() );
+        $campos = $this->datos_bd;
+    
+        foreach($campos as $key => $val )
+        {
+           $campos["$key"] = isset($_POST["$key"])?$_POST["$key"]:"";
+        }
+       
+    return $campos;
     }
 
+
+
+    function edit($id = 0)
+    {
+    
+    $sql = 'SELECT * FROM ingredientes where id = '.$id." LIMIT 1 " ;
+    $lista = $this->dbIng->getArray($sql);
+    
+    return ( new Response('IngredientesEdit',$lista[0]));
+    
+    }
+    
+    
+    
+    function actualizar()
+    {
+    
+    $campos = $this->_cargarDatos();
+    
+    if ( ! empty($campos['id']))
+    {
+        $this->dbIng->upsert('ingredientes', $campos, ['id' => $campos['id']]);
+    }else{
+        array_shift($campos);
+        $this->dbIng->insert('ingredientes', $campos);
+    }
+    
+    return ( $this->index());
+    }
+    
+
+    public function agregar()
+    {
+        $campos = $this->_cargarDatos();
+        array_shift($campos);
+        return ( new Response('IngredientesEdit',$campos));
+       
+    }
+
+    function borrar($id = 0)
+    {
+    
+    $lista = $this->dbIng->delete('ingredientes',['id' => $id]);
+    
+    return ( $this->index());
+    
+    }
+    
+    
 
 }

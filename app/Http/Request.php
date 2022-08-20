@@ -17,16 +17,24 @@ class Request{
             $url = filter_var($url, FILTER_SANITIZE_STRING);
             $url = explode('/', $url); 
             
-            $this->setController(isset($url[0])?$url[0]:"");
-            $this->setMethod(isset($url[1])?$url[1]:"");
+            $sicont = $this->setController(isset($url[0])?$url[0]:"");
 
-            if ( count($url) > 2 )
-            {
-                $this->param = array_splice($url, 2);
-            }else{
+            if ( $sicont == true )
+            { 
+                $simet = $this->setMethod(isset($url[1])?$url[1]:"");
+            
+                if( $simet )
+                {
+                    if ( count($url) > 2 )
+                    {
+                        $this->param = array_splice($url, 2);
+                    }else{
+                        $this->param = [];
+                     }
+                }else{
                 $this->param = [];
+                }   
             }
-
     }
 
 
@@ -34,6 +42,7 @@ class Request{
     {
         $controlador = ucfirst($controlador);
         $tmpcont = "App\Http\Controllers\\{$controlador}Controller";
+        $okcontrolador = true;
 
         if ($controlador == '')
         {
@@ -44,24 +53,27 @@ class Request{
         
             $this->controlador = "App\Http\Controllers\ErrorController";
             $this->vista = 'App\Views\Error';
-
+            $okcontrolador = false;
          }else       {
             $this->controlador = "App\Http\Controllers\\{$controlador}Controller";
             $this->vista = "App\Views\\{$controlador}";
         }
+
+        return $okcontrolador;
     }
 
     public function setMethod( $metodo = '' )
     {
-        if ( $metodo == '' || ! method_exists($this->controlador, $metodo ))
-        {
-            $this->metodo = "index";            
-        }else
-        {
+        $esta = true;
+
+        if ( $metodo == '' || ! method_exists($this->controlador, $metodo ) )        {
+            $this->metodo = "index";
+            $esta = false;              
+        }else{
+            
             $this->metodo = $metodo;
-
         }
-
+        return $esta;
     }
 
     public function getControlador(){

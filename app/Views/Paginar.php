@@ -11,8 +11,9 @@ class Paginar extends Vista
     private $maxbotones = 10;
     protected $pagina; 
 
-    public function __construct()    
+    public function __construct($dt = [])    
     {
+        $this->datos = $dt;
     }
 
     public function setPagina($pg)
@@ -20,33 +21,19 @@ class Paginar extends Vista
         $this->pagina = substr( $pg, strrpos($pg,'\\') + 1);
     }
 
-    public function render($datospg)
+    public function render()
     {
+        $datospg = $this->datos;
+
         $datos = $datospg['datos'];
         $paginas = $datospg['paginas'];
         $tbl = "";
         $campos = array_keys($datos[0]);
 
-        $tbl = sprintf("<form name='form_ingredientes' action = '/%s/insertar' METHOD=POST>
-                        <table><tr>", $this->pagina);
-    foreach($campos as $inp )
-    {
-
-    $tbl .= sprintf("<td><label>%s</label><br><input id=%s type=text name=%s size=10></td>",
-        $inp, $inp, $inp );
-
-    }
-    $tbl .= sprintf("</tr></table>
-                    <input type=submit name=enviar /> 
-                    </form>");
-    
-
         if ( $paginas['cantPaginas'] > 1)
         {
             $tbl .= $this->botones($paginas);
         }
-
-        $tbl .= '<div><a href="/"><img src="/images/flecha-cuadrado-izquierda.png" width=25/></a> </div>';
 
         $tbl .= '<table border = 1><tr>';
 
@@ -58,6 +45,9 @@ class Paginar extends Vista
             {
                 $tbl .= "<th>" . $th . "</th>";
             }   
+
+            $tbl .= sprintf("<th></th>");
+
 
         $tbl .= '</tr><tr>';
         }
@@ -71,6 +61,8 @@ class Paginar extends Vista
             {
                 $tbl .= "<td>" . $td . "</td>";
             }
+            $tbl .= sprintf("<td><a href=/%s/edit/%s>Edit</a>  <a href=/%s/borrar/%s>Borrar</a></td>",
+        $this->pagina,$valores[0],$this->pagina,$valores[0]);
 
             $tbl .= '</tr>';
         }        

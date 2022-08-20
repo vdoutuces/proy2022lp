@@ -7,7 +7,15 @@ namespace App\Classes;
 class Vista
 {
 
-function render( $datos )
+    protected $datos;
+
+function construct($datos=[])
+{
+    $this->datos = $datos;
+
+}
+
+function render()
 {
     echo " render ". __CLASS__;
 

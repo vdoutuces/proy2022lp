@@ -2,6 +2,7 @@
 
 namespace App\http\Controllers;
 use \App\Classes\Controlador;
+use \App\Http\Response;
 
 class  HomeController extends Controlador
 {
@@ -16,7 +17,7 @@ class  HomeController extends Controlador
             
         ];
 
-        return $dat;
+        return (new Response("Home", $dat));
     }
 
 }

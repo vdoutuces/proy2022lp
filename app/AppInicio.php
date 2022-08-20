@@ -44,15 +44,11 @@ class AppInicio{
     public function send()
     {
 
-        $datos = call_user_func_array(   [ new $this->controlador , 
+        $response = call_user_func_array(   [ new $this->controlador , 
                                             $this->metodo ],
                                             $this->parametros
                                         );    
-        $vi = new $this->vista;
-        $htmlvista = $vi->render($datos);
- 
-        $enviar = new Response;
-        $enviar->send($htmlvista);
+        $response->send();
 
     }
         

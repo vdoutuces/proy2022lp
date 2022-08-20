@@ -9,13 +9,16 @@ class Home extends Vista{
     
     private $cont="";
 
-    function __construct()
-    {
-        
-    }
+     function __construct($dt)
+     {
+        $this->datos = $dt;
+     }
 
-    public function render($datos)
+
+    public function render()
     {
+
+        $datos = $this->datos;
 
         if ( isset( $_SESSION["idUser"]))
         {  

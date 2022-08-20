@@ -270,7 +270,8 @@ class DB
     public function getArray($query, $type = MYSQLI_ASSOC)
     {
         $row = $this->query($query);
-
+        $r = [];
+        
         while ($q = $row->fetch_array($type)) {
             $r[] = $q;
         }

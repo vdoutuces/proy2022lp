@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Classes\Controlador;
 use App\Http\Models\DB;
+use App\Http\Response;
 
 class UserController extends Controlador
 {
@@ -34,7 +35,7 @@ class UserController extends Controlador
         }elseif ( isset($_POST["usuario"])){
             $pag = "/error";
         } else {
-            return $this->datos;
+            return (new Response('User',$this->datos));
         }
         redirect($pag);
     }
@@ -67,6 +68,8 @@ class UserController extends Controlador
         {
             session_destroy();
         }
+ 
+        redirect('/');
 
     }
 
