@@ -9,15 +9,13 @@ class Home extends Vista{
     
     private $cont="";
 
-     function __construct($dt)
+    function __construct($dt)
      {
         $this->datos = $dt;
      }
 
-
     public function render()
     {
-
         $datos = $this->datos;
 
         if ( isset( $_SESSION["idUser"]))
@@ -32,8 +30,7 @@ class Home extends Vista{
         {
             $this->cont .= "<div><h3><strong>$id:</strong> $vl</h3></div>";
         }
-        
-        $this->cont .= "<h3><a href=/ingredientes>Acceda al listado de ingredientes</a></h3>";
+
         return $this->cont;
     }
 

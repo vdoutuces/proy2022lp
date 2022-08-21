@@ -21,7 +21,6 @@ class IngredientesController extends Controlador{
 
     }
 
-
     public function index($pag=1)
     {
         
@@ -38,8 +37,6 @@ class IngredientesController extends Controlador{
         return (new response("Ingredientes",$retorno));
 
     }
-
-
 
     public function pagina($pag=1)
     {
@@ -80,23 +77,17 @@ class IngredientesController extends Controlador{
     return $campos;
     }
 
-
-
     function edit($id = 0)
     {
     
     $sql = 'SELECT * FROM ingredientes where id = '.$id." LIMIT 1 " ;
     $lista = $this->dbIng->getArray($sql);
-    
-    return ( new Response('IngredientesEdit',$lista[0]));
-    
+    return ( new Response('IngredientesEdit',$lista[0]));    
     }
-    
     
     
     function actualizar()
     {
-    
     $campos = $this->_cargarDatos();
     
     if ( ! empty($campos['id']))
@@ -115,17 +106,14 @@ class IngredientesController extends Controlador{
     {
         $campos = $this->_cargarDatos();
         array_shift($campos);
-        return ( new Response('IngredientesEdit',$campos));
+    return ( new Response('IngredientesEdit',$campos));
        
     }
 
     function borrar($id = 0)
     {
-    
-    $lista = $this->dbIng->delete('ingredientes',['id' => $id]);
-    
+        $lista = $this->dbIng->delete('ingredientes',['id' => $id]);   
     return ( $this->index());
-    
     }
     
     

@@ -34,11 +34,8 @@ class AppInicio{
             $this->controlador = ($this->request)->getControlador();
             $this->metodo = ($this->request)->getMetodo();
             $this->vista = ($this->request)->getVista();
-            $this->parametros = ($this->request)->getParametros();
-            
+            $this->parametros = ($this->request)->getParametros();   
         }
-
-
     }
 
     public function send()

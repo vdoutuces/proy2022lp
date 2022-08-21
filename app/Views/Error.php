@@ -12,18 +12,15 @@ class Error extends Vista
     }
 
 
-        public function render()
-        {
-            $datos = $this->datos;
+    public function render()
+    {
+        $datos = $this->datos;
            
-            $html = sprintf("
-                <h1> 404 </h1>
-                <h3> %s </h3>",  implode(" ",$datos));
+        $html = sprintf("
+            <h1> 404 </h1>
+            <h3> %s </h3>",  implode(" ",$datos));
 
-            return $html;
-
-        }
-
-
+        return $html;
+    }
 
 }

@@ -389,7 +389,7 @@ class DB
         $values = "(". implode(", ", $values) .")";
 
         $sql .= $fields ." VALUES {$values};";
-       
+
         $query = $this->query($sql);
 
 

@@ -48,7 +48,6 @@ class Paginar extends Vista
 
             $tbl .= sprintf("<th></th>");
 
-
         $tbl .= '</tr><tr>';
         }
 
@@ -76,7 +75,6 @@ class Paginar extends Vista
     private function botones($paginas )
     {
     $cant = $paginas['cantPaginas'];
-
     $bot = sprintf('<div class="paginar"> <ul>');
  
     if ( $paginas['actual'] > 1)
@@ -87,7 +85,7 @@ class Paginar extends Vista
         $bot .= sprintf('<li><<</li>');
     }
 
-for( $i=0; $i < $cant; $i++)
+    for( $i=0; $i < $cant; $i++)
     {
         if($i+1 != $paginas['actual'])
         {
@@ -96,7 +94,6 @@ for( $i=0; $i < $cant; $i++)
         }else{
             $bot .= sprintf('<li>[%s]</li>', 
              $i+1 );
-
         }
     }
 
@@ -107,9 +104,7 @@ for( $i=0; $i < $cant; $i++)
     }else{
         $bot .= sprintf('<li>>></li>');
     }
-
     $bot .= sprintf('</ul></div>');
-
 
         return $bot;
     }

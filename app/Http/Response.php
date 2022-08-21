@@ -13,11 +13,9 @@ class Response
         $this->vista = new $v($datos);
     }
 
-
     public function send()
     {
         $contenido = $this->vista->render();
-        require_once __DIR__."/../Views/layout.php";
-        
+        require_once __DIR__."/../Views/layout.php";    
     }
 }

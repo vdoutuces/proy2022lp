@@ -15,29 +15,26 @@ class User{
     public function render($dt = [])
     {
         $dt = $this->datos;
-        
-        if (isset( $dt["idUser"]) && $dt["idUser"] > 0  )
+        $html = "";
+        $html .=sprintf( "<form name=frUsuarios method='post' action='/user/%s'>",
+    $this->datos['boton']);
+        foreach($dt as $i => $v)
         {
-            $this->cont .= "<div><p> Usuario: {$dt['usuario']} - <a href='/user/logout'> salir </a></p></di>";
-        }else
-        {
-            $this->cont .=
-            '
-            <div class="login">
-            <form action="/user" method = "POST">
-
-            <label for="usuario">Usuario</label>
-            <input type="text" id="usuario" name="usuario"  size=9/>
-  
-            <label for="clave">Clave</label>
-            <input type="password" id="clave" name="clave" size=9 />
-  
-            <input type="submit" name"enviar" value="login"/>
-             </form>
-            </div>
-            ';
+            if ( $i != "boton")
+            {
+            $html .= sprintf("
+            <label for=%s> %s </label>
+            <input type=Text id='%s' name='%s' value='%s'>",
+            $i, $i, $i, $i, $v );
+            }
         }
-        return $this->cont;
+
+        $html .= sprintf("<input type=submit name='%s' value='%s'>",
+    $this->datos['boton'], $this->datos['boton']);
+    
+    return $html;
+ 
+
     }
     
 }
