@@ -1,4 +1,25 @@
 CREATE DATABASE IF NOT EXISTS etslp;
+CREATE USER IF NOT EXISTS etslp IDENTIFIED BY 'etslp';
+GRANT ALL PRIVILEGES ON etslp.* TO etslp;
+
+USE etslp;
+
+CREATE TABLE usuarios( idUser int not null auto_increment PRIMARY KEY,
+usuario varchar(50) NOT NULL , clave varchar(15) NOT NULL, fecha DATETIME ,
+descripcion varchar(200));
+
+INSERT INTO usuarios(usuario, clave, fecha, descripcion) 
+VALUES('jvdeoli','cjvdeoli','2022-08-01','usuario1');
+INSERT INTO usuarios(usuario, clave, fecha, descripcion) 
+VALUES('rotciv','crotciv','2022-09-01','usuario2');
+INSERT INTO usuarios(usuario, clave, fecha, descripcion) 
+VALUES('llandin','cllandin','2022-05-01','usuario3');
+INSERT INTO usuarios(usuario, clave, fecha, descripcion) 
+VALUES('jperez','cjperez','2021-08-01','usuario4');
+
+
+
+
 
 CREATE TABLE IF NOT EXISTS ingredientes (
     id INT not null  PRIMARY KEY AUTO_INCREMENT,
